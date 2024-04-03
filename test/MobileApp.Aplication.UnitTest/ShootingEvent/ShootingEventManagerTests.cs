@@ -12,14 +12,18 @@ public class ShootingEventManagerTests
         this.shootingEventManager = new ShootingEventManager();
     }
 
-    [Fact]
-    public async Task Get_ShouldReturnOk_IfNoCancellation()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task Get_ShouldReturnOk_IfNoCancellation(bool passCancelationTokenNone)
     {
         // Arrange
         IEnumerable<MobileApp.Application.ShootingEvent.ShootingEvent>? response = null;
 
         // Act
-        response = await shootingEventManager.Get(CancellationToken.None);
+        response = passCancelationTokenNone
+            ? await shootingEventManager.Get(CancellationToken.None)
+            : await shootingEventManager.Get();
 
         // Assert
         response.Should().NotBeNull();
@@ -45,32 +49,40 @@ public class ShootingEventManagerTests
     }
 
     [Theory]
-    [InlineData("4fa85f64-5717-4562-b3fc-2c963f66afa6")]
-    [InlineData("5fa85f64-5717-4562-b3fc-2c963f66afa6")]
-    public async Task GetById_ShouldReturnOk_IfNoCancellationAndIdExists(string eventId)
+    [InlineData("4fa85f64-5717-4562-b3fc-2c963f66afa6", true)]
+    [InlineData("5fa85f64-5717-4562-b3fc-2c963f66afa6", true)]
+    [InlineData("4fa85f64-5717-4562-b3fc-2c963f66afa6", false)]
+    [InlineData("5fa85f64-5717-4562-b3fc-2c963f66afa6", false)]
+    public async Task GetById_ShouldReturnOk_IfNoCancellationAndIdExists(string eventId, bool passCancelationTokenNone)
     {
         // Arrange
         var id = Guid.Parse(eventId);
         MobileApp.Application.ShootingEvent.ShootingEvent? response = null;
 
         // Act
-        response = await shootingEventManager.GetById(id, CancellationToken.None);
+        response = passCancelationTokenNone
+            ? await shootingEventManager.GetById(id, CancellationToken.None)
+            : await shootingEventManager.GetById(id);
 
         // Assert
         response.Should().NotBeNull();
     }
 
     [Theory]
-    [InlineData("fee7c225-8cb3-4050-a9db-85a2e4cf230c")]
-    [InlineData("68944c26-b727-4529-a35e-0ba9354592be")]
-    public async Task GetById_ShouldReturnOk_IfNoCancellationAndIdNoExists(string eventId)
+    [InlineData("fee7c225-8cb3-4050-a9db-85a2e4cf230c", true)]
+    [InlineData("68944c26-b727-4529-a35e-0ba9354592be", true)]
+    [InlineData("fee7c225-8cb3-4050-a9db-85a2e4cf230c", false)]
+    [InlineData("68944c26-b727-4529-a35e-0ba9354592be", false)]
+    public async Task GetById_ShouldReturnOk_IfNoCancellationAndIdNoExists(string eventId, bool passCancelationTokenNone)
     {
         // Arrange
         var id = Guid.Parse(eventId);
         MobileApp.Application.ShootingEvent.ShootingEvent? response = null;
 
         // Act
-        response = await shootingEventManager.GetById(id, CancellationToken.None);
+        response = passCancelationTokenNone
+            ? await shootingEventManager.GetById(id, CancellationToken.None)
+            : await shootingEventManager.GetById(id);
 
         // Assert
         response.Should().BeNull();
