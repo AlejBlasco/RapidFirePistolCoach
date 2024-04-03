@@ -1,0 +1,11 @@
+﻿@page "/events"
+
+<h3>EventList</h3>
+
+@if(eventList != null)
+{
+    foreach (var e in eventList)
+    {
+        <p>@e.Name</p>
+    }
+}
