@@ -7,11 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6406AF1C-C65
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileApp", "src\MobileApp\MobileApp.csproj", "{000FD1A8-471F-4B51-ABFE-D035B4E860C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileApp.Application", "src\MobileApp.Application\MobileApp.Application.csproj", "{360ADE2E-2DFC-4C9D-B248-41A915BC9C90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileApp.Application", "src\MobileApp.Application\MobileApp.Application.csproj", "{360ADE2E-2DFC-4C9D-B248-41A915BC9C90}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F63137D6-A301-4863-9A48-900A86B169FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileApp.Application.UnitTest", "test\MobileApp.Aplication.UnitTest\MobileApp.Application.UnitTest.csproj", "{5EB5F741-8631-4689-86E3-D4BD2FBE906C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileApp.Application.UnitTest", "test\MobileApp.Aplication.UnitTest\MobileApp.Application.UnitTest.csproj", "{5EB5F741-8631-4689-86E3-D4BD2FBE906C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
