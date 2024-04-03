@@ -1,11 +1,29 @@
 ﻿@page "/events"
 
-<h3>EventList</h3>
-
-@if(eventList != null)
-{
-    foreach (var e in eventList)
+<div Class="rz-p-0 rz-p-md-12">
+    @if (eventList != null)
     {
-        <p>@e.Name</p>
+        foreach (var e in eventList)
+        {
+            string description = string.Format(Literals.EventList_SecsFaceFront, e.SecondsFace);
+
+            if (e.SecondsEdge.HasValue && (e.SecondsEdge.Value > 1))
+                description = string.Format(Literals.EventList_SecsEdge, e.SecondsEdge.Value) + " " + description;
+
+            if (e.Times.HasValue && (e.Times.Value > 1))
+                description = description + string.Format(Literals.EventList_Times, e.Times.Value);
+
+            <RadzenCard Variant="Variant.Filled" Class="rz-my-12 rz-mx-auto">
+                <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Start" Gap="1rem" Class="rz-p-4">
+                    <RadzenButton Icon="alarm" style="min-width:100px;"/>
+                    <RadzenStack Gap="0">
+                        <RadzenText TextStyle="TextStyle.Overline" class="rz-display-flex rz-mt-2 rz-my-0">@Literals.Common_Name</RadzenText>
+                        <RadzenText TextStyle="TextStyle.Body1"><b>@e.Name</b></RadzenText>
+                        <RadzenText TextStyle="TextStyle.Overline" class="rz-display-flex rz-mt-4 rz-mb-0">@Literals.Common_Description</RadzenText>
+                        <RadzenText TextStyle="TextStyle.Body1"><b>@description</b></RadzenText>
+                    </RadzenStack>
+                </RadzenStack>
+            </RadzenCard>
+        }
     }
-}
+</div>

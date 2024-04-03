@@ -15,6 +15,4 @@ public partial class EventList
         if (shootingEventManager != null)
             eventList = await shootingEventManager.Get();
     }
-
-    
 }
