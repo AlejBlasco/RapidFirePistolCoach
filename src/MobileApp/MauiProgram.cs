@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using MobileApp.Application.ShootingEvent;
 
 namespace MobileApp
 {
@@ -15,6 +16,9 @@ namespace MobileApp
 				});
 
 			builder.Services.AddMauiBlazorWebView();
+
+			//TODO: Move to Application.ConfigureServices
+			builder.Services.AddSingleton<IShootingEventManager, ShootingEventManager>();
 
 #if DEBUG
 			builder.Services.AddBlazorWebViewDeveloperTools();

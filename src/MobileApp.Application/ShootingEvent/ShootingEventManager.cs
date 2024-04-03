@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Text.Json;
 
 namespace MobileApp.Application.ShootingEvent;
 
@@ -13,6 +14,8 @@ public class ShootingEventManager : IShootingEventManager
             throw new ArgumentNullException(nameof(this.shootingEvents));
     }
 
+    public async Task<IEnumerable<ShootingEvent>?> Get() => await Get(CancellationToken.None);
+
     public async Task<IEnumerable<ShootingEvent>?> Get(CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -26,6 +29,8 @@ public class ShootingEventManager : IShootingEventManager
 
         return response;
     }
+
+    public async Task<ShootingEvent?> GetById(Guid eventId) => await GetById(eventId, CancellationToken.None);
 
     public async Task<ShootingEvent?> GetById(Guid eventId, CancellationToken cancellationToken)
     {
